@@ -9,11 +9,12 @@
 </template>
 
 <script>
+    /* eslint-disable */
     export default {
-        name: 'News',
+        name: 'Fixture',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'Fixture.vue'
             }
         }
     }

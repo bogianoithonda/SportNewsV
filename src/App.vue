@@ -1,12 +1,18 @@
 <template>
-    
+    <div class="container">
+        <news></news>
+        <!-- <fixture></fixture>
+        <group></group> -->
+    </div>
 </template>
 
 <script>
-    import News from '@/components/News.vue';
+    import News from '@/components/News.vue'
+    import Fixture from '@/components/Fixture.vue'
+    import Group from '@/components/Group.vue'
     export default {
-        components: {News},
-        // name: 'App'
+        components: {News, Fixture, Group},
+        name: 'App',
     }
 </script>
 
