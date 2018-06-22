@@ -1,7 +1,7 @@
 <template>
     <div class="col-lg-9 px-0" id="news">
         <div class="row">
-            <h4 class="font-weight-bold mx-3 mt-4"><i class="fa fa-newspaper-o"></i> Lastest Sport's News</h4>
+            <h4 class="font-weight-bold mx-3 mt-4"><i class="fa fa-newspaper-o"></i> Lastest News</h4>
         </div>
         <div class="row">
             <div class="col-lg-6 px-0 lastest-news" v-for="nw in news" v-show="nw.description != '' && nw.title != ''">
@@ -15,28 +15,27 @@
                     </div>
                 </a>
             </div>
+        </div>
+        <div class="row justify-content-center my-5">
+            <img src="http://www.cbc.ca/kidscbc2/content/static-images/ajax-loading.gif" alt="" width=8% height=8%>
+            
         </div>      
     </div>
-
-
 </template>
 
 <script>
     var request = new XMLHttpRequest();
     var contents = [];
-    // var loadContents = [];
     var contentCount = 0;
     var pageCount = 2;
     var fApiKey = "955acf3993df49169dfa33dce76d015f";
     var sApiKey = "295e708b17e644599a2794b5fae59e5f"; 
-    // var url = "http://worldcup.sfg.io/matches";
-    // var url = "https://newsapi.org/v2/everything?sources=football-italia&apiKey=" + fApiKey; 
-    // var url = "https://newsapi.org/v2/everything?sources=bbc-sport&apiKey=" + fApiKey;
-    // var url = "https://newsapi.org/v2/everything?sources=fox-sports&apiKey=" + fApiKey;
-    // var url = "https://newsapi.org/v2/everything?sources=talksport&apiKey=" + fApiKey;
-    // var url = "https://newsapi.org/v2/top-headlines?sources=the-sport-bible&apiKey=" + fApiKey;
-    // var url = "https://newsapi.org/v2/top-headlines?sources=four-four-two&apiKey=" + fApiKey;
-    var url = "https://newsapi.org/v2/everything?sources=bleacher-report&apiKey=" + fApiKey;
+    
+    // var url = `https://newsapi.org/v2/everything?sources=football-italia&apiKey=${fApiKey}`; 
+    // var url = `https://newsapi.org/v2/everything?sources=bbc-sport&apiKey=${fApiKey}`;
+    // var url = `https://newsapi.org/v2/everything?sources=bleacher-report&apiKey=${fApiKey}`;
+    // var url = `https://newsapi.org/v2/everything?sources=bbc-sport&apiKey=${fApiKey}`;
+    var url = `https://newsapi.org/v2/everything?sources=techradar&apiKey=${sApiKey}`;
 
     request.onreadystatechange = function() {
         if(request.readyState === 4) {
@@ -50,7 +49,8 @@
                 }
             }
             else {
-                console.log('An error occurred during your request: ' +  request.status + ' ' + request.statusText);
+                console.log('An error occurred during your request: ' +  request.status + ' ' + request.message);
+                alert("An error occurs when getting data from API ! See more at console.");
             } 
         }
     }
@@ -58,7 +58,7 @@
     request.send();
     
     window.onscroll = function(ev) {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        if (Math.ceil(window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
             // alert("you're at the bottom of the page");
             if(pageCount > 2) { 
                 let tmp = pageCount - 1;
@@ -73,7 +73,6 @@
             pageCount ++;
         }
     };
-
 
     /* eslint-disable */
     export default {
@@ -91,7 +90,7 @@
                 let time = ((new Date()).getTime() - publishDate.getTime())/3600000;
                 let strTime = "";
                 if(Math.round(time) == 0){
-                    strTime = Math.round(time*59) == 1 ? Math.round(time*60) + " minute ago ..." : Math.round(time*60) + " minutes ago ..." ;
+                    strTime = Math.round(time*60) == 1 ? Math.round(time*60) + " minute ago ..." : Math.round(time*60) + " minutes ago ...";
                 }
                 else strTime = Math.round(time) == 1 ? Math.round(time) + " hour ago ..." : Math.round(time) + " hours ago ...";
                 return strTime;
