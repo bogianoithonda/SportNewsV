@@ -3,7 +3,7 @@
 
 > 2018
 
-## Build Setup
+## How to run?
 
 ``` bash
 # install dependencies
