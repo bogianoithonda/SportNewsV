@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <news></news>
         <!-- <fixture></fixture>
         <group></group> -->
